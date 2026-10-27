@@ -1,0 +1,6 @@
+{
+  "name": "AUTOREPUESTOS PRO",
+  "description": "Tienda online de repuestos mecánicos automotrices con buscador avanzado por modelo de vehículo y año, catálogo PDF descargable, seguimiento de pedidos y panel administrativo.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

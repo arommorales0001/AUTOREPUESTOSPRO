@@ -1,0 +1,73 @@
+{
+  "entities": {
+    "Product": {
+      "title": "Product",
+      "description": "Repuesto mecánico automotriz",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string", "maxLength": 100 },
+        "sku": { "type": "string", "maxLength": 30 },
+        "category": { "type": "string", "maxLength": 50 },
+        "price": { "type": "number" },
+        "isOffer": { "type": "boolean" },
+        "discountPrice": { "type": "number" },
+        "stock": { "type": "number" },
+        "brand": { "type": "string", "maxLength": 50 },
+        "compatibleModels": { "type": "string", "maxLength": 200 },
+        "yearStart": { "type": "number" },
+        "yearEnd": { "type": "number" },
+        "engine": { "type": "string", "maxLength": 50 },
+        "image": { "type": "string", "maxLength": 300 },
+        "description": { "type": "string", "maxLength": 500 }
+      },
+      "required": ["id", "name", "sku", "category", "price", "brand"]
+    },
+    "UserSubscription": {
+      "title": "UserSubscription",
+      "description": "Registro de cliente con Nombre, Correo y WhatsApp",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "name": { "type": "string", "maxLength": 100 },
+        "email": { "type": "string", "maxLength": 100 },
+        "whatsapp": { "type": "string", "maxLength": 20 },
+        "registeredAt": { "type": "string" },
+        "subscribed": { "type": "boolean" },
+        "role": { "type": "string", "enum": ["user", "admin"] }
+      },
+      "required": ["uid", "name", "email", "whatsapp"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "Pedido de repuestos automotrices con código ARP-XXXXX",
+      "type": "object",
+      "properties": {
+        "orderCode": { "type": "string", "maxLength": 30 },
+        "customerName": { "type": "string", "maxLength": 100 },
+        "customerEmail": { "type": "string", "maxLength": 100 },
+        "customerPhone": { "type": "string", "maxLength": 30 },
+        "shippingAddress": { "type": "string", "maxLength": 200 },
+        "totalSoles": { "type": "number" },
+        "status": { "type": "string", "enum": ["Registrado", "En Preparación", "En Camino", "Entregado"] },
+        "createdAt": { "type": "string" },
+        "items": { "type": "string", "maxLength": 2000 }
+      },
+      "required": ["orderCode", "customerName", "customerEmail", "totalSoles", "status"]
+    }
+  },
+  "firestore": {
+    "/products/{productId}": {
+      "schema": { "$ref": "#/entities/Product" },
+      "description": "Catálogo de repuestos automotrices"
+    },
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/UserSubscription" },
+      "description": "Usuarios registrados con WhatsApp y rol"
+    },
+    "/orders/{orderId}": {
+      "schema": { "$ref": "#/entities/Order" },
+      "description": "Pedidos realizados en la plataforma"
+    }
+  }
+}
